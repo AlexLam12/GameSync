@@ -1,0 +1,41 @@
+main {
+  margin: 2em;
+}
+.app-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -16px;
+  margin-left: -16px;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.post p {
+  white-space: pre-wrap;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  border: .2rem #6c767d solid;
+  border-radius: .2rem;
+  background-color: #6c767d;
+  color: whitesmoke;
+  margin: 0rem 10rem 0rem 10rem;
+
+}
+
+.login-button {
+  background-color: #db534b;
+  color: whitesmoke;
+}
+
+.login-logo {
+  height: 10rem;
+  width: auto;
+}
