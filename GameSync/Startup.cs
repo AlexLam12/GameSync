@@ -24,6 +24,7 @@ namespace GameSync
         {
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<IGameRepository, GameRepository>();
+            services.AddTransient<IUserGameRepository, UserGameRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";

@@ -1,19 +1,25 @@
-﻿using GameSync.Repositories;
+﻿using GameSync.Models;
+using GameSync.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Security.Claims;
 
 namespace GameSync.Controllers
 {
 
         [Route("api/[controller]")]
         [ApiController]
+        [Authorize]
         public class GameController : ControllerBase
         {
             private readonly IGameRepository _gameRepository;
+            private readonly IUserProfileRepository _userProfileRepository;
 
-            public GameController(IGameRepository gameRepository)
+
+            public GameController(IGameRepository gameRepository, IUserProfileRepository userProfileRepository)
             {
                 _gameRepository = gameRepository;
+                _userProfileRepository = userProfileRepository;
             }
 
         [HttpGet]
@@ -22,10 +28,12 @@ namespace GameSync.Controllers
                 return Ok(_gameRepository.GetAll());
             }
 
-        [HttpGet("MyGames")]
+        [HttpGet("myGames")]
             public IActionResult Get()
             {
-                return Ok(_gameRepository.GetAllMyGames());
+                var loggedInUser = GetCurrentUserProfile();
+  
+                return Ok(_gameRepository.GetAllMyGames(loggedInUser.Id));
             }
         [HttpGet("search")]
         public IActionResult Search(string q)
@@ -36,6 +44,11 @@ namespace GameSync.Controllers
             }
 
             return Ok(_gameRepository.Search(q));
+        }
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }
