@@ -81,7 +81,7 @@ namespace GameSync.Repositories
             }
         }
 
-        public List<Game> GetAllMyGames()
+        public List<Game> GetAllMyGames(int userProfileId)
         {
             using (var conn = Connection)
             {

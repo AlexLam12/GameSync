@@ -10,7 +10,7 @@ namespace GameSync.Repositories
     {
         List<Game> GetAll();
         List<Game> Search(string criterion);
-        List<Game> GetAllMyGames();
+        List<Game> GetAllMyGames(int userProfileId);
         Game GetById(int id);
 
     }

@@ -16,11 +16,9 @@ namespace GameSync.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT up.Id, Up.FirebaseUserId, up.FirstName, up.LastName, up.DisplayName, 
-                               up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
-                               ut.Name AS UserTypeName
-                          FROM UserProfile up
-                               LEFT JOIN UserType ut on up.UserTypeId = ut.Id
+                        SELECT up.Id, up.FirebaseUserId, up.Name, up.UserName, 
+                               up.Email, up.CreateDateTime
+                         FROM UserProfile up
                          WHERE FirebaseUserId = @FirebaseuserId";
 
                     DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
@@ -55,11 +53,11 @@ namespace GameSync.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO UserProfile (FirebaseUserId, FirstName, LastName, DisplayName, 
-                                                                 Email, CreateDateTime, ImageLocation, UserTypeId)
+                    cmd.CommandText = @"INSERT INTO UserProfile (FirebaseUserId, Name,  UserName, 
+                                                                 Email, CreateDateTime)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@FirebaseUserId, @FirstName, @LastName, @DisplayName, 
-                                                @Email, @CreateDateTime, @ImageLocation, @UserTypeId)";
+                                        VALUES (@FirebaseUserId, tName, @UserName, 
+                                                @Email, @CreateDateTime)";
                     DbUtils.AddParameter(cmd, "@FirebaseUserId", userProfile.FirebaseUserId);
                     DbUtils.AddParameter(cmd, "@UserName", userProfile.UserName);
                     DbUtils.AddParameter(cmd, "@Name", userProfile.Name);
