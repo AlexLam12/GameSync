@@ -8,7 +8,7 @@ namespace GameSync.Repositories
 {
     public interface IUserGameRepository
     {
-        void Add(UserGame userGame);
+        int Add(UserGame userGame);
         void Delete(int id);
     }
 }
