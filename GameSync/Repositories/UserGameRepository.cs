@@ -20,21 +20,21 @@ namespace GameSync.Repositories
         {
             get { return new SqlConnection(_connectionString); }
         }
-        public void Add(UserGame userGame)
+        public int Add(UserGame userGame)
         {
             using (SqlConnection conn = Connection)
             {
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO UserGame (UserProfile_id, Game_Id)
+                    cmd.CommandText = @"INSERT INTO UserGame (UserProfile_id, Game_id)
                                         OUTPUT INSERTED.ID 
-                                        VALUES (@UserProfile_id, @Game_Id)";
+                                        VALUES (@UserProfile_id, @Game_id)";
 
                     cmd.Parameters.AddWithValue("@UserProfile_id", userGame.UserProfile_id);
-                    cmd.Parameters.AddWithValue("@Game_Id", userGame.Game_id);
+                    cmd.Parameters.AddWithValue("@Game_id", userGame.Game_id);
 
-                    userGame.Id = (int)cmd.ExecuteScalar();
+                    return userGame.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }

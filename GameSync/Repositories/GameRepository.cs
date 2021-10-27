@@ -56,7 +56,9 @@ namespace GameSync.Repositories
                 {
                     cmd.CommandText = @"SELECT Id, Title, NumPlayers, ImageLocation
                                             FROM Game
-                                         WHERE Title LIKE @criterion";
+                                         WHERE Title LIKE @criterion
+                                         ORDER BY Title
+                                        ";
 
                     cmd.Parameters.AddWithValue("@criterion", $"%{criterion}%");
                     SqlDataReader reader = cmd.ExecuteReader();

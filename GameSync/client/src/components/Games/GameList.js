@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getMyGames } from '../../modules/gameManager';
 import { GameCard } from './GameCard';
+import "./Game.css"
 
 export const GameList = () => {
     const [ games, setGames] = useState([]);
