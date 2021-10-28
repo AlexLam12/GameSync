@@ -7,8 +7,13 @@ export const GameList = () => {
     const [ games, setGames] = useState([]);
 
     useEffect(() => {
-        getMyGames().then(games => setGames(games));
+        getMyGames().then(setGames);
     }, []);
+
+    const onDelete = () => {
+        getMyGames().then(setGames)
+      }
+
     return (
         <>
         <h1>Game List</h1>
@@ -17,6 +22,7 @@ export const GameList = () => {
                 <GameCard
                 key={game.id}
                 game={game}
+                onDelete={onDelete}
                 />)}
         </div>
         </>

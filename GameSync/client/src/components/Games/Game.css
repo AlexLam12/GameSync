@@ -8,7 +8,7 @@
     flex-wrap: wrap;
     background-color: rgb(194, 110, 99);
 }
-img{
+.img {
     width: 100px;
     margin: 10px;
 }
