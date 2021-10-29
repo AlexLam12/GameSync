@@ -6,10 +6,16 @@ import "./Game.css";
 import { deleteUserGame } from '../../modules/userGameManager';
 
 export const GameCard = (props) => {
+    const history = useHistory()
 
     const handleDelete = () => {
+        const confirmDelete = window.confirm(
+            "Are you sure you would like to delete the post?"
+          );
+          if (confirmDelete) {
         deleteUserGame(props.game.id)
         .then(props.onDelete);
+        }
       };
       
     return(
@@ -21,6 +27,7 @@ export const GameCard = (props) => {
                 <span className="game-card__image">
                     <CardImg src={props.game.imageLocation} alt={props.game.title}/>
                 </span>
+                <Button onClick={() => {history.push(`/userGame/detail/${props.game.id}`)}}>View Comments</Button>
                 <Button onClick={handleDelete}>Delete</Button>
             </div>
         </Card>

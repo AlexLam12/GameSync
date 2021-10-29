@@ -10,5 +10,6 @@ namespace GameSync.Repositories
     {
         int Add(UserGame userGame);
         void Delete(int id);
+        
     }
 }

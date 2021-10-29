@@ -4,6 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
 import { GameList } from "./Games/GameList";
+import { UserGameDetail } from "./Games/UserGameDetail";
 import GameSearch from "./Games/GameSearch";
 
 
@@ -22,6 +23,10 @@ export default function ApplicationViews({ isLoggedIn }) {
 
         <Route path="/search">
         {isLoggedIn ? <GameSearch /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/userGame/detail/:id">
+        {isLoggedIn ? <UserGameDetail /> : <Redirect to="/login" />}
         </Route>
 
 
