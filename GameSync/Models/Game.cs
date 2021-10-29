@@ -11,6 +11,7 @@ namespace GameSync.Models
         public string Title { get; set; }
         public string NumPlayers { get; set; }
         public string ImageLocation { get; set; }
-        public int Genre_id { get; set; } 
+        public int Genre_id { get; set; }
+        public UserProfile UserProfile { get; set; }
     }
 }

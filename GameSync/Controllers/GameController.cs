@@ -14,9 +14,10 @@ namespace GameSync.Controllers
         {
             private readonly IGameRepository _gameRepository;
             private readonly IUserProfileRepository _userProfileRepository;
+            private readonly IUserGameRepository _userGameRepository;
 
 
-            public GameController(IGameRepository gameRepository, IUserProfileRepository userProfileRepository)
+        public GameController(IGameRepository gameRepository, IUserProfileRepository userProfileRepository)
             {
                 _gameRepository = gameRepository;
                 _userProfileRepository = userProfileRepository;
@@ -49,6 +50,17 @@ namespace GameSync.Controllers
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var userGame = _gameRepository.GetUserGameById(id);
+            if (userGame == null)
+            {
+                return NotFound();
+            }
+            return Ok(userGame);
         }
     }
 }

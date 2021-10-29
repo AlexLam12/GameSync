@@ -11,5 +11,8 @@ namespace GameSync.Models
         public int UserProfile_id { get; set; }
         public int UserGame_id { get; set; }
         public string Content { get; set; }
+        public UserProfile UserProfile { get; set; }
+        public UserGame UserGame { get; set; }
+       
     }
 }

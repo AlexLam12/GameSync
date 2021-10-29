@@ -91,7 +91,9 @@ namespace GameSync.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                          SELECT ug.Id, ug.UserProfile_id, ug.Game_id, g.Id as GameId, g.Title, g.NumPlayers, g.ImageLocation, up.Id as UserProfileId
+                          SELECT ug.Id, ug.UserProfile_id, ug.Game_id, 
+                                 g.Id as GameId, g.Title, g.NumPlayers, g.ImageLocation, 
+                                 up.Id as UserProfileId
                             FROM UserGame ug
                             Left JOIN UserProfile up on ug.UserProfile_id = up.Id
                             Left JOIN Game g on ug.Game_id = g.id
@@ -151,6 +153,55 @@ namespace GameSync.Repositories
                     reader.Close();
 
                     return game;
+                }
+            }
+        }
+        public UserGame GetUserGameById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                          SELECT ug.Id as UserGameId, ug.UserProfile_id, ug.Game_id, 
+                                 g.Id as GameId, g.Title, g.NumPlayers, g.ImageLocation, 
+                                 up.Id as UserProfileId, up.UserName
+                            FROM UserGame ug
+                            Left JOIN UserProfile up on ug.UserProfile_id = up.Id
+                            Left JOIN Game g on ug.Game_id = g.id
+                        WHERE ug.Id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    var reader = cmd.ExecuteReader();
+
+                    UserGame userGame = null;
+
+                    if (reader.Read())
+                    {
+                        userGame = new UserGame
+                        {
+                            Id = DbUtils.GetInt(reader, "UserGameId"),
+                            UserProfile_id = DbUtils.GetInt(reader, "UserProfile_Id"),
+                            UserProfile = new UserProfile
+                            {
+                                Id = DbUtils.GetInt(reader, "UserProfileId"),
+                                UserName = DbUtils.GetString(reader, "UserName"),
+                            },
+                            Game_id = DbUtils.GetInt(reader, "Game_Id"),
+                            Game = new Game
+                            {
+                                Id = DbUtils.GetInt(reader, "GameId"),
+                                Title = DbUtils.GetString(reader, "Title"),
+                                NumPlayers = DbUtils.GetString(reader, "NumPlayers"),
+                                ImageLocation = DbUtils.GetString(reader, "ImageLocation")
+                            }
+                        };
+                    }
+
+                    reader.Close();
+
+                    return userGame;
                 }
             }
         }
