@@ -8,6 +8,9 @@ namespace GameSync.Repositories
 {
     public interface IUserFriendRepository
     {
-        List<UserFriend> GetAllMyFriends(int userProfileId);
+        List<UserProfile> GetAllMyFriends(int userProfileId);
+        List<UserProfile> GetAll();
+        List<UserProfile> Search(string criterion);
+
     }
 }

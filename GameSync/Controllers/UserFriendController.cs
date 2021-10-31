@@ -17,13 +17,33 @@ namespace GameSync.Controllers
     {
         private readonly IUserFriendRepository _userFriendRepository;
         private readonly IUserProfileRepository _userProfileRepository;
-        private readonly IUserGameRepository _userGameRepository;
         public UserFriendController(IUserFriendRepository userFriendRepository, IUserProfileRepository userProfileRepository)
         {
             _userFriendRepository = userFriendRepository;
             _userProfileRepository = userProfileRepository;
         }
+        [HttpGet("myFriends")]
+        public IActionResult Get()
+        {
+            var loggedInUser = GetCurrentUserProfile();
 
+            return Ok(_userFriendRepository.GetAllMyFriends(loggedInUser.Id));
+        }
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            return Ok(_userFriendRepository.GetAll());
+        }
+        [HttpGet("search")]
+        public IActionResult Search(string q)
+        {
+            if (string.IsNullOrEmpty(q))
+            {
+                return Ok(_userFriendRepository.GetAll());
+            }
+
+            return Ok(_userFriendRepository.Search(q));
+        }
         private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
