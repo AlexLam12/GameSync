@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace GameSync.Models
 {
-    public class UserFriend
+    public class Friend
     {
         public int Id { get; set; }
-        public int UserProfile_id { get; set; }
-        public int Friend_id { get; set; }
-        public UserProfile UserProfile { get; set; }
+        public string UserName { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
     }
 }
