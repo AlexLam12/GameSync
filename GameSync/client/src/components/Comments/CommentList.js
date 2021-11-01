@@ -6,24 +6,27 @@ import Comment from './Comment.js'
 
 export const CommentList = () => {
   const [comments, setComments] = useState([]);
-
   const history = useHistory();
-
   const { id } = useParams();
-  const getComments = (id) => {
-    getAllCommentsOnUserGame(id).then(comments => setComments(comments));
-  };
+
 
   useEffect(() => {
-    getComments(id)
+    getAllCommentsOnUserGame(id).then(setComments);
   }, []);
+
+  const onDelete = () => {
+    getAllCommentsOnUserGame(id).then(setComments)
+  }
 
   return (
     <>
     <div className="container">
-      <div className="row justify-content-center">
+      <div className="comment-list">
         {comments.map((comment) => (
-          <Comment comment={comment} key={comment.id} />
+          <Comment 
+          comment={comment} 
+          key={comment.id} 
+          onDelete={onDelete}/>
         ))}
       </div>
     </div>
@@ -31,8 +34,7 @@ export const CommentList = () => {
     <button className="btns" 
         onClick={() => {
                 history.push(`/comments/create/${id}`)
-			        }}
-                    >Create New Comment</button>
+			        }}>Create New Comment</button>
     </div>
     </>
   );

@@ -56,7 +56,7 @@ export const updateComment = (comment) => {
 
 export const deleteComment = (commentId) => {
   return getToken().then((token) => {
-    return fetch(`${apiUrl}/delete/${commentId}`, {
+    return fetch(`${apiUrl}/${commentId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

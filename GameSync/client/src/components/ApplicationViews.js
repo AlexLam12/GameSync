@@ -5,8 +5,8 @@ import Register from "./Register";
 import Hello from "./Hello";
 import { GameList } from "./Games/GameList";
 import { UserGameDetail } from "./Games/UserGameDetail";
-import { CommentForm } from "./Comments/CommentForm";
 import GameSearch from "./Games/GameSearch";
+import { CommentForm } from "./Comments/CommentForm";
 
 
 export default function ApplicationViews({ isLoggedIn }) {

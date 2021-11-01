@@ -2,20 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { Card, CardBody } from "reactstrap";
 import { deleteComment, getCommentById } from "../../modules/commentManager";
+import { getUserGameById } from "../../modules/gameManager.js";
 
-const Comment = ( {comment} ) => {
+const Comment = ( {comment, onDelete} ) => {
 
     const history = useHistory();
     const { userGameId } = useParams();
-    // const [ com, setComment ] = useState();
 
-    // const deleteSelectedComment = (event) => {
-    //     event.preventDefault()
-    //     const confirmDelete = window.confirm("Are you sure you would like to delete the comment?")
-    //     if (confirmDelete) {
-    //         deleteComment(comment.id).then(() => {history.push(`/userGames/detail/${userGameId}`)})
-    //     };
-    // }
+
+    const deleteSelectedComment = () => {
+        const confirmDelete = window.confirm(
+            "Are you sure you would like to delete the comment?"
+            );
+        if (confirmDelete) {
+            deleteComment(comment.id)
+            .then(onDelete)
+        };
+    }
 
 if (!comment) {
     return null;
@@ -24,9 +27,6 @@ if (!comment) {
 return (
         <Card >
             <CardBody>
-                <p className="text-center px-4">
-                    {"Your Comments"}
-                </p>
                 <div>
                 <p className="text-left px-4">
                     -{comment.content}
@@ -34,13 +34,13 @@ return (
                 </div>
             </CardBody>
             <button className="btns" 
-            // onClick={() => {
-            //     history.push(`/comments/edit/${comment.id}`)
-			//         }}
-                    >Edit</button>
-        <button 
-        // onClick={deleteSelectedComment}
-        >Delete</button>
+            onClick={() => {
+                history.push(`/comments/edit/${comment.id}`)
+			        }}>
+                        Edit</button>
+        <button onClick={deleteSelectedComment}>
+            Delete
+            </button>
         </Card>
     )
 };
