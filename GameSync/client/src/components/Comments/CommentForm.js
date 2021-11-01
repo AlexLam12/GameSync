@@ -1,15 +1,15 @@
 import React, {useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { addComment, getCommentById } from "../../modules/commentManager.js";
-import { getGameById } from "../../modules/gameManager.js";
+import { getUserGameById } from "../../modules/gameManager.js";
 
-const CommentForm = (props) => {
+export const CommentForm = (props) => {
     const [comment, setComment] = useState({
         content: "",
-        Game_id: 0
+        userGame_id: 0
     });
 
-    const [ game, setGame ] = useState({});
+    const [ userGame, setUserGame ] = useState({});
 
     const history = useHistory();
     const { id } = useParams();
@@ -21,22 +21,22 @@ const CommentForm = (props) => {
         setComment(newComment)
         }
 
-        const handleClickSaveComment = () => {
-            
-            if (comment.subject === "" || comment.content === "") {
-                window.alert("Please complete the comment form.")
-            } else {
-                const newComment = {
-                    game_id: props.game.id,
-                    content: comment.content
-                }
-                addComment(newComment)
-                .then(() => history.push(`/posts/detail/${props.game.id}`))
+    const handleClickSaveComment = () => {
+        
+        if (comment.content === "") {
+            window.alert("Please complete the comment form.")
+        } else {
+            const newComment = {
+                userGame_id: userGame.id,
+                content: comment.content
             }
+            addComment(newComment)
+            .then(() => history.push(`/userGame/detail/${userGame.id}`))
         }
+    }
 
         useEffect(() => {
-            getGameById(id).then(resp => setGame(resp));
+            getUserGameById(id).then(resp => setUserGame(resp));
         }, []);
 
         return(

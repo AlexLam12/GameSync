@@ -29,9 +29,9 @@ export const CommentList = () => {
     </div>
     <div>
     <button className="btns" 
-        // onClick={() => {
-        //         history.push(`/comments/create/${id}`)
-		// 	        }}
+        onClick={() => {
+                history.push(`/comments/create/${id}`)
+			        }}
                     >Create New Comment</button>
     </div>
     </>

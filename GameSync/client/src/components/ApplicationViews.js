@@ -5,6 +5,7 @@ import Register from "./Register";
 import Hello from "./Hello";
 import { GameList } from "./Games/GameList";
 import { UserGameDetail } from "./Games/UserGameDetail";
+import { CommentForm } from "./Comments/CommentForm";
 import GameSearch from "./Games/GameSearch";
 
 
@@ -27,6 +28,14 @@ export default function ApplicationViews({ isLoggedIn }) {
 
         <Route path="/userGame/detail/:id">
         {isLoggedIn ? <UserGameDetail /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/comments/create/:id" >
+        {isLoggedIn ? <CommentForm /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/coments/edit/:id" exact>
+          {isLoggedIn ? <CommentForm /> : <Redirect to="/login" />}
         </Route>
 
 

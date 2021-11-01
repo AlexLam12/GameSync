@@ -126,8 +126,8 @@ namespace GameSync.Repositories
                                         VALUES			    (@UserGame_id,
 					                                          @UserProfile_id,
 					                                          @Content)";
-                    cmd.Parameters.AddWithValue("@PostId", comment.UserGame_id);
-                    cmd.Parameters.AddWithValue("@UserProfileId", currentUser);
+                    cmd.Parameters.AddWithValue("@UserGame_id", comment.UserGame_id);
+                    cmd.Parameters.AddWithValue("@UserProfile_id", currentUser);
                     cmd.Parameters.AddWithValue("@Content", comment.Content);
 
                     comment.Id = (int)cmd.ExecuteScalar();
