@@ -12,6 +12,7 @@ namespace GameSync.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CommentController : ControllerBase
     {
 
@@ -25,7 +26,6 @@ namespace GameSync.Controllers
 
 
         [HttpGet("getCommentsByUserGameId/{id}")]
-        [Authorize]
         public IActionResult Get(int id)
         {
             var comment = _commentRepository.GetCommentsOnUserGame(id);
@@ -37,8 +37,7 @@ namespace GameSync.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize]
-        public IActionResult GetById(int id)
+        public IActionResult GetCommentById(int id)
         {
             var comment = _commentRepository.GetCommentById(id);
             if (comment == null)
@@ -49,7 +48,6 @@ namespace GameSync.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public IActionResult Post(Comment comment)
         {
             var currentUser = GetCurrentUserProfile();
@@ -73,7 +71,6 @@ namespace GameSync.Controllers
 
 
         [HttpPut("{id}")]
-        [Authorize]
         public IActionResult Put(int id, Comment comment)
         {
             if (id != comment.Id)
@@ -86,7 +83,6 @@ namespace GameSync.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
         public IActionResult Delete(int id)
         {
             _commentRepository.Delete(id);

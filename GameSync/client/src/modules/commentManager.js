@@ -43,7 +43,7 @@ export const addComment = (comment) => {
 
 export const updateComment = (comment) => {
   return getToken().then((token) => {
-    return fetch(apiUrl, {
+    return fetch(`${apiUrl}/${comment.id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,

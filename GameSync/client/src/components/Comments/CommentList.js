@@ -7,7 +7,7 @@ import Comment from './Comment.js'
 export const CommentList = () => {
   const [comments, setComments] = useState([]);
   const history = useHistory();
-  const { id } = useParams();
+  const {id} = useParams();
 
 
   useEffect(() => {

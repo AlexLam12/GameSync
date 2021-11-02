@@ -5,7 +5,6 @@ import CommentList from "../Comments/CommentList.js";
 
 export const UserGameDetail = () => {
     const { id } = useParams();
-    const history = useHistory();
     const [userGame, setUserGame] = useState({});
 
   useEffect(() => {

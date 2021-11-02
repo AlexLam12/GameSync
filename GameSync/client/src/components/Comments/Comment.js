@@ -7,7 +7,7 @@ import { getUserGameById } from "../../modules/gameManager.js";
 const Comment = ( {comment, onDelete} ) => {
 
     const history = useHistory();
-    const { userGameId } = useParams();
+    const {id} = useParams();
 
 
     const deleteSelectedComment = () => {
@@ -35,7 +35,7 @@ return (
             </CardBody>
             <button className="btns" 
             onClick={() => {
-                history.push(`/comments/edit/${comment.id}`)
+                history.push(`/comments/edit/${id}/${comment.id}`)
 			        }}>
                         Edit</button>
         <button onClick={deleteSelectedComment}>
