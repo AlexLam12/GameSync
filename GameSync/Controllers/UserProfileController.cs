@@ -2,12 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using GameSync.Models;
 using GameSync.Utils;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace GameSync.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserProfileController : ControllerBase
     {
         private readonly IUserProfileRepository _userProfileRepository;

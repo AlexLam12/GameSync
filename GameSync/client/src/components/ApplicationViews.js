@@ -34,7 +34,7 @@ export default function ApplicationViews({ isLoggedIn }) {
         {isLoggedIn ? <CommentForm /> : <Redirect to="/login" />}
         </Route>
 
-        <Route path="/coments/edit/:id" exact>
+        <Route path="/comments/edit/:userGameId/:commentId" exact>
           {isLoggedIn ? <CommentForm /> : <Redirect to="/login" />}
         </Route>
 
