@@ -6,9 +6,10 @@ export default function Hello() {
       position: "fixed",
       left: 0,
       right: 0,
-      top: "50%",
+      top: "15%",
       marginTop: "-0.5rem",
       textAlign: "center",
-    }}>hello</span>
+    }}><img src="/Welcomelogo.PNG" alt="Welcome"/>
+    </span>
   );
 }

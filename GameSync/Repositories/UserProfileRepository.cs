@@ -56,13 +56,12 @@ namespace GameSync.Repositories
                     cmd.CommandText = @"INSERT INTO UserProfile (FirebaseUserId, Name,  UserName, 
                                                                  Email, CreateDateTime)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@FirebaseUserId, tName, @UserName, 
-                                                @Email, @CreateDateTime)";
+                                        VALUES (@FirebaseUserId, @Name, @UserName, 
+                                                @Email, sysdatetime())";
                     DbUtils.AddParameter(cmd, "@FirebaseUserId", userProfile.FirebaseUserId);
                     DbUtils.AddParameter(cmd, "@UserName", userProfile.UserName);
                     DbUtils.AddParameter(cmd, "@Name", userProfile.Name);
                     DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
-                    DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);
 
                     userProfile.Id = (int)cmd.ExecuteScalar();
                 }

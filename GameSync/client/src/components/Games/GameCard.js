@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from "react-router";
-import { Card, CardBody, CardImg, CardText, CardTitle, CardSubtitle, Button } from "reactstrap";
+import { Card, CardBody, CardImg, CardText, CardTitle, CardSubtitle, Button, ListGroup, ListGroupItem } from "reactstrap";
 import "./Game.css";
 import { deleteUserGame } from '../../modules/userGameManager';
 
@@ -18,17 +18,15 @@ export const GameCard = (props) => {
       };
       
     return(
-        <Card>
-            <div className={"game-card"}>
-                <span className="games-card__title">
+        <Card className={"game-card"} style={{width:'18rem'}}>
+                    <CardImg variant="top" src={props.game.imageLocation} alt={props.game.title}/>
+                <CardBody className="games-card__title">
                     <CardTitle> {props.game.title} </CardTitle>
-                </span>
-                <span className="game-card__image">
-                    <CardImg src={props.game.imageLocation} alt={props.game.title}/>
-                </span>
-                <Button onClick={() => {history.push(`/userGame/detail/${props.game.id}`)}}>View Comments</Button>
-                <Button onClick={handleDelete}>Delete</Button>
-            </div>
+                </CardBody>
+        <ListGroup className="list-group-flish">
+            <ListGroupItem><Button onClick={() => {history.push(`/userGame/detail/${props.game.id}`)}}>View Comments</Button></ListGroupItem>
+            <ListGroupItem><Button onClick={handleDelete}>Delete</Button></ListGroupItem>
+        </ListGroup>
         </Card>
     )
 }
