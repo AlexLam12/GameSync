@@ -2,11 +2,7 @@
 using GameSync.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace GameSync.Controllers
 {
@@ -22,7 +18,7 @@ namespace GameSync.Controllers
             _userFriendRepository = userFriendRepository;
             _userProfileRepository = userProfileRepository;
         }
-        [HttpGet("myFriends")]
+        [HttpGet("myfriends")]
         public IActionResult Get()
         {
             var loggedInUser = GetCurrentUserProfile();
@@ -43,6 +39,22 @@ namespace GameSync.Controllers
             }
 
             return Ok(_userFriendRepository.Search(q));
+        }
+        [HttpPost]
+        public IActionResult Post(UserFriend userFriend)
+        {
+            var loggedInUser = GetCurrentUserProfile();
+
+            userFriend.UserProfile_id = loggedInUser.Id;
+
+            _userFriendRepository.Add(userFriend);
+            return CreatedAtAction("Get", new { id = userFriend.Id }, userFriend);
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _userFriendRepository.Delete(id);
+            return NoContent();
         }
         private UserProfile GetCurrentUserProfile()
         {

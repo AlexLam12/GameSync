@@ -2,6 +2,7 @@ import React, { useEffect, useState,} from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { getAllComments, getAllCommentsOnUserGame } from "../../modules/commentManager.js";
 import Comment from './Comment.js'
+import { Card, CardBody, CardImg, CardText, CardTitle, CardSubtitle, Button } from "reactstrap";
 
 
 export const CommentList = () => {
@@ -13,6 +14,9 @@ export const CommentList = () => {
   useEffect(() => {
     getAllCommentsOnUserGame(id).then(setComments);
   }, []);
+  useEffect(() => {
+    console.log(comments)
+  }, [comments]);
 
   const onDelete = () => {
     getAllCommentsOnUserGame(id).then(setComments)
@@ -31,10 +35,10 @@ export const CommentList = () => {
       </div>
     </div>
     <div>
-    <button className="btns" 
+    <Button className="btns" 
         onClick={() => {
                 history.push(`/comments/create/${id}`)
-			        }}>Create New Comment</button>
+			        }}>Create New Comment</Button>
     </div>
     </>
   );

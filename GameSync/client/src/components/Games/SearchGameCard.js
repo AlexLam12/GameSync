@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router";
-import { Link } from 'react-router-dom';
 import { Card, CardBody, CardImg, CardText, CardTitle, CardSubtitle, Button } from "reactstrap";
 import "./Game.css"
 import { addUserGame } from '../../modules/userGameManager';

@@ -7,6 +7,8 @@ import { GameList } from "./Games/GameList";
 import { UserGameDetail } from "./Games/UserGameDetail";
 import GameSearch from "./Games/GameSearch";
 import { CommentForm } from "./Comments/CommentForm";
+import { FriendList } from "./Friends/FriendList";
+import { FriendSearch } from "./Friends/FriendSearch";
 
 
 export default function ApplicationViews({ isLoggedIn }) {
@@ -30,7 +32,7 @@ export default function ApplicationViews({ isLoggedIn }) {
         {isLoggedIn ? <UserGameDetail /> : <Redirect to="/login" />}
         </Route>
 
-        <Route path="/comments/create/:id" >
+        <Route path="/comments/create/:userGameId" >
         {isLoggedIn ? <CommentForm /> : <Redirect to="/login" />}
         </Route>
 
@@ -38,6 +40,13 @@ export default function ApplicationViews({ isLoggedIn }) {
           {isLoggedIn ? <CommentForm /> : <Redirect to="/login" />}
         </Route>
 
+        <Route path="/myfriends">
+        {isLoggedIn ? <FriendList /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/searchfriend">
+        {isLoggedIn ? <FriendSearch /> : <Redirect to="/login" />}
+        </Route>
 
 
         <Route path="/login">

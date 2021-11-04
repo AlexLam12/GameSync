@@ -26,6 +26,7 @@ namespace GameSync
             services.AddTransient<IGameRepository, GameRepository>();
             services.AddTransient<IUserGameRepository, UserGameRepository>();
             services.AddTransient<ICommentRepository, CommentRepository>();
+            services.AddTransient<IUserFriendRepository, UserFriendRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
@@ -48,7 +49,7 @@ namespace GameSync
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tabloid", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "GameSync", Version = "v1" });
 
                 var securitySchema = new OpenApiSecurityScheme
                 {
@@ -80,7 +81,7 @@ namespace GameSync
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tabloid v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GameSync v1"));
             }
 
             app.UseHttpsRedirection();

@@ -26,7 +26,7 @@ namespace GameSync.Controllers
             userGame.UserProfile_id = loggedInUser.Id;
 
             _userGameRepository.Add(userGame);
-            return CreatedAtAction("Get", new { id = userGame.Id }, userGame);
+            return Ok();
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

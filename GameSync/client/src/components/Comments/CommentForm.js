@@ -1,18 +1,19 @@
 import React, {useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { Card, CardBody, Button } from "reactstrap";
 import { addComment, getCommentById, updateComment } from "../../modules/commentManager.js";
 
 export const CommentForm = () => {
     
     const [ comment, setComment ] = useState({});
+    const history = useHistory();
+    const { commentId, userGameId } = useParams();
     useEffect(() => {
         if(commentId){
             getCommentById(commentId)
-            .then(setComment())
+            .then(setComment)
         }
     }, []);
-    const history = useHistory();
-    const { commentId, userGameId } = useParams();
     
 
     const handleControlledInputChange = (event) => {
@@ -51,14 +52,15 @@ export const CommentForm = () => {
                     <input type="text" id="content" required autoFocus className="form-control" placeholder="Content" value={comment?.content} onChange={handleControlledInputChange} />
                 </div>
             </fieldset>
-            <div className="buttons"><button className="btns" onClick={
+            <div className="buttons">
+                <Button className="btns" onClick={
                 (event) => {
                     event.preventDefault()
                     handleClickSaveComment()
                 }
             }>
             SAVE COMMENT
-            </button> </div>
+            </Button> </div>
         </form>    
             </>
         )

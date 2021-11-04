@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import FriendCard from './FriendCard';
-import { searchFriends } from '../modules/friendManager';
+import { FriendCard } from './SearchFriendCard';
+import { searchFriends } from '../../modules/friendManager';
 
-const FriendSearch = () => {
+export const FriendSearch = () => {
   const [ friends, setFriends ] = useState([]);
   const [ criterion, setCriterion ] = useState("");
 

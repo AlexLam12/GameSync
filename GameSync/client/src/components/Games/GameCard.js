@@ -1,6 +1,5 @@
 import React from 'react';
 import { useHistory } from "react-router";
-import { Link } from 'react-router-dom';
 import { Card, CardBody, CardImg, CardText, CardTitle, CardSubtitle, Button } from "reactstrap";
 import "./Game.css";
 import { deleteUserGame } from '../../modules/userGameManager';
@@ -10,7 +9,7 @@ export const GameCard = (props) => {
 
     const handleDelete = () => {
         const confirmDelete = window.confirm(
-            "Are you sure you would like to delete the post?"
+            "Are you sure you would like to delete this game?"
           );
           if (confirmDelete) {
         deleteUserGame(props.game.id)

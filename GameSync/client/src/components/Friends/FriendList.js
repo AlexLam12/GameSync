@@ -1,23 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import FriendCard from './FriendCard';
-import { getFriends } from '../modules/friendManager';
+import { useHistory } from 'react-router';
+import { FriendCard } from './FriendCard';
+import { getMyFriends } from '../../modules/friendManager';
+import { Button } from 'reactstrap';
 
-const FriendList = () => {
+export const FriendList = () => {
+  const history = useHistory()
   const [ friends, setFriends ] = useState([]);
 
   useEffect(() => {
-    getFriends().then(friends => setFriends(friends));
+    getMyFriends().then(setFriends);
   }, []);
+  const onClick = () => {
+    history.push("/searchfriend")
+  }
+  const onDelete = () => {
+    getMyFriends().then(setFriends)
+  }
 
   return (
     <>
       <h1>Friend List</h1>
+      <Button onClick={onClick}>Add a Friend</Button>
       <div className="friend-list">
         {friends.map(friend =>
           <FriendCard
             key={friend.id}
             friend={friend}
-            allowEdit={true} />
+            onDelete={onDelete} />
         )}
       </div>
     </>

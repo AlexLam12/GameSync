@@ -40,7 +40,14 @@ export default function Header({ isLoggedIn }) {
             <Nav className="mr-auto" navbar>
             {isLoggedIn &&
               <NavItem>
-                <NavLink tag={RRNavLink} to="/search">New Game</NavLink>
+                <NavLink tag={RRNavLink} to="/search">Game Seach</NavLink>
+              </NavItem>
+            }
+          </Nav>
+          <Nav className="mr-auto" navbar>
+            {isLoggedIn &&
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/myfriends">Friends List</NavLink>
               </NavItem>
             }
           </Nav>
