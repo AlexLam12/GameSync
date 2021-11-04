@@ -11,7 +11,7 @@ export const FriendCard = (props) => {
     const handleSave = (event) => {
         event.preventDefault()
         addUserFriend(props.friend.id)
-        .then(history.push("/myfriends"))
+        .then(() => history.push("/myfriends"))
     };
 
     return(
