@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import { Card, CardBody } from "reactstrap";
+import { Card, CardBody, Button } from "reactstrap";
 import { deleteComment, getCommentById } from "../../modules/commentManager";
 import { getUserGameById } from "../../modules/gameManager.js";
 
@@ -12,7 +12,7 @@ const Comment = ( {comment, onDelete} ) => {
 
     const deleteSelectedComment = () => {
         const confirmDelete = window.confirm(
-            "Are you sure you would like to delete the comment?"
+            "Are you sure you would like to delete this comment?"
             );
         if (confirmDelete) {
             deleteComment(comment.id)
@@ -33,14 +33,14 @@ return (
                 </p>
                 </div>
             </CardBody>
-            <button className="btns" 
+            <Button className="btns" 
             onClick={() => {
                 history.push(`/comments/edit/${id}/${comment.id}`)
 			        }}>
-                        Edit</button>
-        <button onClick={deleteSelectedComment}>
+                        Edit</Button>
+        <Button onClick={deleteSelectedComment}>
             Delete
-            </button>
+            </Button>
         </Card>
     )
 };

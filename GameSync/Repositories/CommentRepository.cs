@@ -35,7 +35,7 @@ namespace GameSync.Repositories
                                         JOIN UserProfile up ON up.Id = c.UserProfile_id
                                         JOIN UserGame ug ON ug.Id = c.UserGame_id
                                         JOIN Game g ON g.Id = ug.Game_id
-                                        WHERE c.UserGame_id = 1";
+                                        WHERE c.UserGame_id = @id";
                     cmd.Parameters.AddWithValue("@id", id);
 
                     SqlDataReader reader = cmd.ExecuteReader();

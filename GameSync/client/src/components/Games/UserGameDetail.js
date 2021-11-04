@@ -15,9 +15,7 @@ export const UserGameDetail = () => {
     <div className="container">
       <center>
         <img src={userGame.game?.imageLocation} alt={userGame.game?.title} />
-        <p>
           <h2>{userGame.game?.title}</h2>
-        </p>
         <div>
         <CommentList />
       </div>

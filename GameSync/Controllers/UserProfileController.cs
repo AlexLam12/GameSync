@@ -33,5 +33,15 @@ namespace GameSync.Controllers
             }
             return Ok();
         }
+        [HttpPost]
+        public IActionResult Post(UserProfile userProfile)
+        {
+
+            _userProfileRepository.Add(userProfile);
+            return CreatedAtAction(
+                nameof(GetUserProfile),
+                new { firebaseUserId = userProfile.FirebaseUserId },
+                userProfile);
+        }
     }
 }
