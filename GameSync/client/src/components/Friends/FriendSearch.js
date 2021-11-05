@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FriendCard } from './SearchFriendCard';
 import { searchFriends } from '../../modules/friendManager';
+import {  Button } from "reactstrap";
 
 export const FriendSearch = () => {
   const [ friends, setFriends ] = useState([]);
@@ -28,8 +29,8 @@ export const FriendSearch = () => {
             key={friend.id}
             friend={friend}
             allowEdit={false} />
-        )}
-      </div>
+           )} 
+        </div> 
     </>
   );
 }

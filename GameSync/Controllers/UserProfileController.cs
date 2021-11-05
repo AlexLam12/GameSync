@@ -1,7 +1,6 @@
 ﻿using GameSync.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using GameSync.Models;
-using GameSync.Utils;
 using Microsoft.AspNetCore.Authorization;
 
 namespace GameSync.Controllers

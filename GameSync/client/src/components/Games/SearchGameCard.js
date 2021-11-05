@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router";
-import { Card, CardBody, CardImg, CardText, CardTitle, CardSubtitle, Button } from "reactstrap";
+import { Card, CardBody, CardImg, CardText, CardTitle, CardSubtitle, Button, ListGroup, ListGroupItem } from "reactstrap";
 import "./Game.css"
 import { addUserGame } from '../../modules/userGameManager';
 
@@ -16,16 +16,14 @@ export const GameCard = (props) => {
     };
 
     return(
-        <Card>
-            <div className={"game-card"}>
-                <span className="games-card__title">
-                    <CardTitle> {props.game.title} </CardTitle>
-                </span>
-                <span className="game-card__image">
-                    <CardImg src={props.game.imageLocation} alt={props.game.title}/>
-                </span>
-                <Button onClick={handleSave}>Add</Button>
-            </div>
-        </Card>
+    <Card className={"game-card"} style={{width:'18rem'}}>
+        <CardImg variant="top" src={props.game.imageLocation} alt={props.game.title}/>
+        <CardBody className="games-card__title">
+            <CardTitle> {props.game.title} </CardTitle>
+        </CardBody>
+        <ListGroup className="list-group-flish">
+            <ListGroupItem><Button onClick={handleSave} className="add-button">Add</Button></ListGroupItem>
+        </ListGroup>
+    </Card>
     )
 }

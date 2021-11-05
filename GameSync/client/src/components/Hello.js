@@ -9,7 +9,7 @@ export default function Hello() {
       top: "15%",
       marginTop: "-0.5rem",
       textAlign: "center",
-    }}><img src="/Welcomelogo.PNG" alt="Welcome"/>
+    }}><img src="/WelcomePageLogo.PNG" alt="Welcome"/>
     </span>
   );
 }
