@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import { Card, CardBody, Button } from "reactstrap";
+import { Card, CardBody, Button, ListGroup, ListGroupItem } from "reactstrap";
 import { deleteComment, getCommentById } from "../../modules/commentManager";
 import { getUserGameById } from "../../modules/gameManager.js";
 
@@ -25,7 +25,7 @@ if (!comment) {
 }
 
 return (
-        <Card >
+        <Card className="game-card" style={{width:'25rem'}}>
             <CardBody>
                 <div>
                 <p className="text-left px-4">
@@ -33,14 +33,16 @@ return (
                 </p>
                 </div>
             </CardBody>
-            <Button className="btns" 
-            onClick={() => {
-                history.push(`/comments/edit/${id}/${comment.id}`)
-			        }}>
-                        Edit</Button>
-        <Button onClick={deleteSelectedComment}>
-            Delete
-            </Button>
+            <ListGroup className="list-group-flish">
+                <ListGroupItem><Button className="btns" 
+                    onClick={() => {
+                        history.push(`/comments/edit/${id}/${comment.id}`)
+                            }}>
+                                Edit</Button></ListGroupItem>
+                <ListGroupItem><Button onClick={deleteSelectedComment}>
+                    Delete
+                </Button></ListGroupItem>
+            </ListGroup>
         </Card>
     )
 };

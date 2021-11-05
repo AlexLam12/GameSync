@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { FriendCard } from './FriendCard';
 import { getMyFriends } from '../../modules/friendManager';
 import { Button } from 'reactstrap';
+import "./Friend.css"
 
 export const FriendList = () => {
   const history = useHistory()
@@ -30,6 +31,9 @@ export const FriendList = () => {
             onDelete={onDelete} />
         )}
       </div>
+      <div className='click-button'>
+        <Button>See what games games you have in common. Click here</Button>
+      </div>  
     </>
   );
 }

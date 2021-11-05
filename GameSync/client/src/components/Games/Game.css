@@ -4,7 +4,13 @@
     
 }
 .game-card {
-    justify-content: space-between;
-    flex-wrap: wrap;
-    background-color: rgb(194, 110, 99);
+    margin: 10px;
+    padding: 5px;
+    border: black;
+    border-width: 5px;
+    border-style: solid;
+    justify-content: space-evenly;
+}
+.add-button{
+    text-align: center;
 }

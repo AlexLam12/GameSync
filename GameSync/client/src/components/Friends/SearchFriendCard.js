@@ -15,13 +15,14 @@ export const FriendCard = (props) => {
     };
 
     return(
-        <Card>
-            <div className={"friend-card"}>
-                <span className="friends-card__title">
+            <dl className="friend-card">
+                <dd className="friends-card__title">
                     <CardTitle> {props.friend.userName} </CardTitle>
-                </span>
-                <Button onClick={handleSave}>Add</Button>
-            </div>
-        </Card>
+                </dd>
+                <dd>
+                    <Button onClick={handleSave}>Add</Button>
+                </dd>
+            </dl>
+        
     )
 }

@@ -1,6 +1,8 @@
 import React from 'react';
-import { Card, CardBody, CardImg, CardText, CardTitle, CardSubtitle, Button } from "reactstrap";
+import {  CardTitle, Button } from "reactstrap";
 import { deleteUserFriend } from '../../modules/friendManager';
+import "./Friend.css"
+
 
 export const FriendCard = ({friend, onDelete}) => {
 
@@ -15,13 +17,21 @@ export const FriendCard = ({friend, onDelete}) => {
       };
       
     return(
-        <Card>
-            <div className={"friend-card"}>
-                <span className="friends-card__title">
+            <dl className="friend-card">
+                <dt className="friends-card__title">
                     <CardTitle> {friend.userProfile.userName} </CardTitle>
-                </span>
-                <Button onClick={handleDelete}>Delete</Button>
-            </div>
-        </Card>
+                </dt>                
+                <dd>
+                    <label class="switch">
+                    <input type="checkbox"/>
+                    <span class="slider round"></span>
+                    </label>
+                </dd>
+                <dd>
+                    <Button onClick={handleDelete}>Delete</Button>
+                </dd>
+
+            </dl>
+        
     )
 }

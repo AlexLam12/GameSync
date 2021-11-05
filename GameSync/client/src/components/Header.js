@@ -18,7 +18,7 @@ export default function Header({ isLoggedIn }) {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand tag={RRNavLink} to="/">GameSync</NavbarBrand>
+        <NavbarBrand tag={RRNavLink} to="/"><img src="/Top_logo-removebg-preview.PNG" alt="Welcome"width="125rem"/></NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>

@@ -18,8 +18,8 @@ export const GameCard = (props) => {
       };
       
     return(
-        <Card className={"game-card"} style={{width:'18rem'}}>
-                    <CardImg variant="top" src={props.game.imageLocation} alt={props.game.title}/>
+        <Card className="game-card" style={{width:'18rem'}}>
+                <CardImg variant="top" src={props.game.imageLocation} alt={props.game.title}/>
                 <CardBody className="games-card__title">
                     <CardTitle> {props.game.title} </CardTitle>
                 </CardBody>
