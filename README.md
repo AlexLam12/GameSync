@@ -25,6 +25,7 @@ GameSync is a full stack application that allows users to add, share, and cross 
 
 # WireFrame
 
+![Wire Frame Backend Capstone](https://user-images.githubusercontent.com/84350426/149177550-7f64e48b-9b25-481d-9bf7-a6d75f5e70cd.PNG)
 
 # MVP For this Project
 
