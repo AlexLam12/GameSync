@@ -6,7 +6,7 @@ GameSync is a full stack application that allows users to add, share, and cross 
 
   - Clone this repo to the location of your choice
   - cd DopeScope
-  - run start DopeScope.sln
+  - run start GameSync.sln
   - cd client
   - run npm install
   - in the same directory run npm start
