@@ -21,7 +21,7 @@ GameSync is a full stack application that allows users to add, share, and cross 
 
 
 # ERD
-
+![ERD for backend Capstone](https://user-images.githubusercontent.com/84350426/149177103-fa731056-d83b-4c34-9a0d-31676089589f.png)
 
 # WireFrame
 
