@@ -5,7 +5,7 @@ GameSync is a full stack application that allows users to add, share, and cross 
 # Install Instructions
 
   - Clone this repo to the location of your choice
-  - cd DopeScope
+  - cd GameSync
   - run start GameSync.sln
   - cd client
   - run npm install
@@ -18,6 +18,75 @@ GameSync is a full stack application that allows users to add, share, and cross 
 
 # SQL
 
+USE [GameSync]
+GO
+
+
+DROP TABLE IF EXISTS [UserFriend];
+DROP TABLE IF EXISTS [UserProfile];
+DROP TABLE IF EXISTS [UserGame];
+DROP TABLE IF EXISTS [Game];
+DROP TABLE IF EXISTS [Comment];
+DROP TABLE IF EXISTS [Genre];
+GO
+
+CREATE TABLE [UserProfile] (
+  [Id] int PRIMARY KEY IDENTITY(1, 1),
+  [UserName] nvarchar(255),
+  [Name] nvarchar(255),
+  [Email] nvarchar(255),
+  [CreateDateTime] datetime,
+  [FirebaseUserId] nvarchar(255)
+
+  CONSTRAINT UQ_FirebaseUserId UNIQUE(FirebaseUserId)
+)
+GO
+
+CREATE TABLE [UserFriend] (
+  [Id] int PRIMARY KEY IDENTITY(1,1),
+  [UserProfile_id] int NOT NULL,
+  [Friend_id] int NOT NULL
+
+  CONSTRAINT [FK_UserFriend_UserProfile_FriendId] FOREIGN KEY ([Friend_id]) REFERENCES [UserProfile] ([Id]),
+  CONSTRAINT [FK_UserFriend_UserProfile_UserProfileId] FOREIGN KEY ([UserProfile_Id]) REFERENCES [UserProfile] ([Id])
+)
+GO
+
+CREATE TABLE [Genre] (
+  [Id] int PRIMARY KEY IDENTITY(1, 1),
+  [Genre] nvarchar(255)
+)
+GO
+
+CREATE TABLE [Game] (
+  [Id] int PRIMARY KEY IDENTITY(1, 1),
+  [Title] nvarchar(255),
+  [NumPlayers] nvarchar(255),
+  [ImageLocation] nvarchar(255),
+  [Genre_id] int
+
+  CONSTRAINT [FK_Game_Genre] FOREIGN KEY ([Genre_id]) REFERENCES [Genre] ([Id])
+)
+GO
+CREATE TABLE [UserGame] (
+  [Id] int PRIMARY KEY IDENTITY(1, 1),
+  [UserProfile_id] int NOT NULL,
+  [Game_id] int NOT NULL
+
+  CONSTRAINT [FK_UserGame_Game] FOREIGN KEY ([Game_id]) REFERENCES [Game] ([Id]),
+  CONSTRAINT [FK_UserGame_UserProfile] FOREIGN KEY ([UserProfile_Id]) REFERENCES [UserProfile] ([Id])
+)
+GO
+CREATE TABLE [Comment] (
+  [Id] int PRIMARY KEY IDENTITY(1, 1),
+  [UserGame_id] int NOT NULL,
+  [UserProfile_id] int NOT NULL,
+  [Content] text NOT NULL
+
+  CONSTRAINT [FK_Comment_Game] FOREIGN KEY ([UserGame_id]) REFERENCES [UserGame] ([Id]),
+  CONSTRAINT [FK_Comment_UserProfile] FOREIGN KEY ([UserProfile_Id]) REFERENCES [UserProfile] ([Id])
+)
+GO
 
 
 # ERD
