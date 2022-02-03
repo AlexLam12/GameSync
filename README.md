@@ -1,4 +1,6 @@
 # GameSync
+![ReadMeHamePage](https://user-images.githubusercontent.com/84350426/152440397-37ffdf4a-4e2b-48c5-ba8f-29f4fcab2ba8.PNG)
+
 GameSync is a full stack application that allows users to add, share, and cross refference their favorite games with thier friend's games. 
 
 
