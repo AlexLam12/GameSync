@@ -94,9 +94,10 @@ namespace GameSync.Repositories
                             FROM UserGame ug
                             Left JOIN UserProfile up on ug.UserProfile_id = up.Id
                             Left JOIN Game g on ug.Game_id = g.id
+                        WHERE up.Id = @id
                         ORDER BY Title
                     ";
-
+                    cmd.Parameters.AddWithValue("@id", userProfileId);
                     var reader = cmd.ExecuteReader();
 
                     var games = new List<Game>();
