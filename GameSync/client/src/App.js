@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
 import { onLoginStatusChange } from "./modules/authManager";
 
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
