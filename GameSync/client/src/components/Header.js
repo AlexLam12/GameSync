@@ -10,6 +10,7 @@ import {
   NavLink
 } from 'reactstrap';
 import { logout } from '../modules/authManager';
+import "./Header.css"
 
 export default function Header({ isLoggedIn }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +18,7 @@ export default function Header({ isLoggedIn }) {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar className='header'  light expand="md">
         <NavbarBrand tag={RRNavLink} to="/"><img src="/Top_logo-removebg-preview.PNG" alt="Welcome"width="125rem"/></NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
